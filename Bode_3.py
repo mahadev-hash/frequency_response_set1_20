@@ -6,7 +6,7 @@ from dash import Dash, dcc, html, Input, Output
 # Load CSV
 
 # =========================
-CSV_PATH = r"F:\New folder\New folder\pvn20.csv"
+CSV_PATH = "pvn20.csv"
 
 data = pd.read_csv(CSV_PATH, sep=None, engine="python")
 data.columns = data.columns.str.strip().str.lower()
@@ -143,5 +143,8 @@ def update_graph(selected_set):
 # =========================
 # Run
 # =========================
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8050))
+    app.run(host="0.0.0.0", port=port)
